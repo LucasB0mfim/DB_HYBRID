@@ -92,12 +92,6 @@ public class VendaTest {
         consultar_produto2.setValor(3499.99d);
         consultar_venda = vendaDAO.consultar(venda.getId());
 
-        // EXCLUIR VENDA (NÃO SEI COMO POSSO EXCLUIR A TABELA VENDA_PRODUTO)
-        //produtoDAO.excluir(consultar_produto1);
-        //produtoDAO.excluir(consultar_produto2);
-        //vendaDAO.excluir(consultar_venda);
-        //clienteDAO.excluir(consultar_cliente);
-
         // BUSCAR TUDO
         Collection<Venda> lista = vendaDAO.buscarTodos();
         assertTrue(lista.size() >= 0);

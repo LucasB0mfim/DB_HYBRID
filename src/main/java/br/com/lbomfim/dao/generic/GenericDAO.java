@@ -19,12 +19,13 @@ import br.com.lbomfim.exception.ExclusaoException;
  */
 
 public class GenericDAO<T, E> implements IGenericDAO<T, E> {
-	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("MYSQL");
+	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
 	private Class<T> persistenteClass;
-	
-	public GenericDAO(Class<T> persistenteClass) {
+
+	public GenericDAO(Class<T> persistenteClass, String dbType) {
 		this.persistenteClass = persistenteClass;
+		this.entityManagerFactory = Persistence.createEntityManagerFactory(dbType);
 	}
 
 	// MÉTODOS DA CLASSE
@@ -57,18 +58,17 @@ public class GenericDAO<T, E> implements IGenericDAO<T, E> {
 	// MÉTODOS DO IGenericDAO
 	@Override
 	public T cadastrar(T entity) throws CadastroException {
-	    try {
-	        abrir_conexao();
-	        entityManager.persist(entity);
-	    } catch (Exception e) {
-	        capturar_erro_conexao();
-	        throw new CadastroException("Erro ao cadastrar: " + e.getMessage());
-	    } finally {
-	        fechar_conexao();
-	    }
-	    return entity;
+		try {
+			abrir_conexao();
+			entityManager.persist(entity);
+		} catch (Exception e) {
+			capturar_erro_conexao();
+			throw new CadastroException("Erro ao cadastrar: " + e.getMessage());
+		} finally {
+			fechar_conexao();
+		}
+		return entity;
 	}
-
 
 	@Override
 	public T atualizar(T entity) throws AtualizacaoException {

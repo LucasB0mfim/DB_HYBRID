@@ -11,6 +11,6 @@ import br.com.lbomfim.domain.Venda;
 public class VendaDAO extends GenericDAO<Venda, Long> implements IGenericDAO<Venda, Long> {
 
 	public VendaDAO() {
-		super(Venda.class);
+		super(Venda.class, "POSTGRES");
 	}
 }

@@ -11,6 +11,6 @@ import br.com.lbomfim.domain.Produto;
 public class ProdutoDAO extends GenericDAO<Produto, Long> implements IGenericDAO<Produto, Long> {
 
 	public ProdutoDAO() {
-		super(Produto.class);
+		super(Produto.class, "POSTGRES");
 	}
 }

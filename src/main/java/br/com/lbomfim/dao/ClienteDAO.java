@@ -11,7 +11,7 @@ import br.com.lbomfim.domain.Cliente;
 public class ClienteDAO extends GenericDAO<Cliente, Long> implements IGenericDAO<Cliente, Long> {
 
 	public ClienteDAO() {
-		super(Cliente.class);
+		super(Cliente.class, "POSTGRES");
 	}
 }
 
